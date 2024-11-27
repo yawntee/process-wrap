@@ -53,10 +53,7 @@ impl TokioCommandWrapper for JobObject {
 		inner: Box<dyn TokioChildWrapper>,
 		core: &TokioCommandWrap,
 	) -> Result<Box<dyn TokioChildWrapper>> {
-		#[cfg(feature = "kill-on-drop")]
-		let kill_on_drop = core.has_wrap::<KillOnDrop>();
-		#[cfg(not(feature = "kill-on-drop"))]
-		let kill_on_drop = false;
+		let kill_on_drop = true;
 
 		#[cfg(feature = "creation-flags")]
 		let create_suspended = core
